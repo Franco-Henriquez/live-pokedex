@@ -13,7 +13,7 @@ target/classes/application.properties
 .factorypath
 .project
 .settings
-application.properties
+*application.properties
 .springBeans
 .sts4-cache
 
