@@ -1,8 +1,10 @@
 HELP.md
 target/
+target/classes/application.properties
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+~/.gradle/gradle.properties
 
 ### STS ###
 .apt_generated
