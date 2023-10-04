@@ -14,9 +14,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -60,6 +62,17 @@ public class Card {
     @NotEmpty(message="Deck ID is required!")
     @Size(min=1, max=5, message="Deck ID must be between 1 and 5 characters")
     private String cardDeckId;
+    
+    @Transient // Field that will NOT be saved in the database
+    private String cardString;
+    
+    @PostLoad // After we grab from DB, call on this method to get the value for the full name, derived from first and last names
+    protected void onLoad() {
+    	System.out.println("Card.java onLoad Triggered");
+    	this.cardString = this.cardDeckId + "/" + this.cardNum;
+    }
+    
+    
     //----------END TABLE COLUMNS------------//
 
     

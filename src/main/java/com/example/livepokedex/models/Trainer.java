@@ -3,6 +3,7 @@ package com.example.livepokedex.models;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -69,11 +70,9 @@ public class Trainer {
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
     private String confirmPassword;
     
-    @Transient
-    @Size(min=1, max=8, message="Favorite pokemon ID must be 1-4 digits long")
-    private Integer favoritePokemon = 0;
+    @Range(min=1, message="Favorite pokemon ID must be 1-4 digits long")
+    private Integer favoritePokemon = 1;
     
-    @Transient
     @Size(min=3, max=8, message="Favorite pokemon CARD must be 3-8 characters long")
     private String favoriteCard = "nul"; //this will store deckId+cardNum //find a way to separate or add a divider to 'split' later
     //----------END TABLE COLUMNS------------//
