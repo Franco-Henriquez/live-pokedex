@@ -5,11 +5,19 @@
 
 
 
+
+/* https://www.fontsaddict.com/font/pokemon-pixel-font-regular.html */
+@font-face {
+	font-family: "PokemonPixel";
+	src:local("/pokemon_pixel_font.ttf") format("truetype"),
+        local("/pokemon_pixel_font.svg#Pokemon-Pixel-Font") format("svg");
+}
+
 @media all {
 
 	div#pokedex
 	{
-		width: 750px;
+		max-width: 100%;
 		margin: 50px auto 0 auto;
 	}
 
@@ -22,12 +30,13 @@
 		z-index: 1;
 	}
 
-	div#right
+	div#detailScreen
 	{
-		width: 350px;
-		height: 500px;
-		float: left;
+		/* width: 350px; */
+		height: auto;
+		/* float: left; */
 		position: relative;
+		background-color:#c00d0d;
 	}
 
 
@@ -78,13 +87,16 @@
 	div#curve2_left
 	{
 		width: 216px;
-		height: 451px;
+		/* height: 451px;  */
+		height: 100%;
 		background-color: #c00d0d;
+		/* background-color: #1b0dc0; */
 		float: right;
 
-		position: absolute;
-		bottom: 0;
+		position: relative;
+		/* bottom: 0; */
 		right: 0;
+		
 
 		border-top-left-radius:85px 60px;
 		-webkit-border-top-left-radius: 85px 60px;
@@ -95,7 +107,7 @@
 	div#bg_curve2_left
 	{
 		width: 400px;
-		height: 420px;
+ 		height: 40vh;
 		background-color: #c00d0d;
 
 		box-shadow: -10px 9px #5e0000;
@@ -103,16 +115,16 @@
 		-moz-box-shadow: -10px 9px #5e0000;
 		-o-box-shadow: -10px 9px #5e0000;
 
-		border-bottom-left-radius: 30px;
+/* 		border-bottom-left-radius: 30px;
 		-webkit-border-bottom-left-radius: 30px;
 		-moz-border-bottom-left-radius: 30px;
-		-o-border-bottom-left-radius: 30px;
+		-o-border-bottom-left-radius: 30px; */
 	}
 
 	div#buttonGlass
 	{
-		width: 60px;
-		height: 60px;
+/* 		width: 90px;
+		height: 80px; */
 		margin-right: 15px;
 		border: 5px solid #fff;
 		float: left;
@@ -127,10 +139,14 @@
 		background: -moz-radial-gradient(#05fbfb, #29abe3);
 		background: -o-radial-gradient(#05fbfb, #29abe3);
 		
-		border-radius: 35px;
-		-webkit-border-radius: 35px;
-		-moz-border-radius: 35px;
-	   	-o-border-radius: 35px;
+		border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -o-border-radius: 50%;
+	    position: relative;
+	    min-width: 124px;
+	    min-height: 124px;
+	    box-sizing: content-box;
 	}
 
 	div#reflect
@@ -160,10 +176,14 @@
 		-moz-box-shadow: 0 0 10px #490000;
 		-o-box-shadow: 0 0 10px #490000;
 
-		border-radius: 20px;
-		-webkit-border-radius: 20px;
-		-moz-border-radius: 20px;
-		-o-border-radius: 20px;
+		border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -o-border-radius: 50%;
+	    position: relative;
+	    min-width: 50px;
+	    min-height: 50px;
+	    box-sizing: content-box;
 		
 		background: radial-gradient(#fb7b7b, #fb0505);
 		background: -webkit-radial-gradient(#fb7b7b, #fb0505);
@@ -183,10 +203,14 @@
 		-moz-box-shadow: 0 0 10px #490000;
 		-o-box-shadow: 0 0 10px #490000;
 
-		border-radius: 20px;
-		-webkit-border-radius: 20px;
-		-moz-border-radius: 20px;
-		-o-border-radius: 20px;
+		border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -o-border-radius: 50%;
+	    position: relative;
+	    min-width: 50px;
+	    min-height: 50px;
+	    box-sizing: content-box;
 		
 		background: radial-gradient(#fbfb9b, #fbfb05);
 		background: -webkit-radial-gradient(#fbfb9b, #fbfb05);
@@ -206,15 +230,20 @@
 		-moz-box-shadow: 0 0 10px #490000;
 		-o-box-shadow: 0 0 10px #490000;
 
-		border-radius: 20px;
-		-webkit-border-radius: 20px;
-		-moz-border-radius: 20px;
-		-o-border-radius: 20px;
+		border-radius: 50%;
+	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%;
+	    -o-border-radius: 50%;
+	    position: relative;
+	    min-width: 50px;
+	    min-height: 50px;
+	    box-sizing: content-box;
 		
 		background: radial-gradient(#b0fb7b, #50fb05);
 		background: -webkit-radial-gradient(#b0fb7b, #50fb05);
 		background: -moz-radial-gradient(#b0fb7b, #50fb05);
 		background: -o-radial-gradient(#b0fb7b, #50fb05);
+
 	}
 
 	div#junction
@@ -251,29 +280,61 @@
 		border-bottom: 2px solid #330000;
 	}
 
+	div#topNav
+	{
+		width: 80%;
+  		height: auto;
+	}
+	
 	div#screen
 	{
 		height: 245px;
-		width: 302px; /* max width - 19px : because 19px is what's on the left side */
+ 		/* width: 302px; max width - 19px : because 19px is what's on the left side */
+ 		/* width: calc(100vh - 15%); seems to work for */
+ 		width: 85%;
+ 		height: 25vh;
+ 		/* width: auto; */
 		padding: 0 20px;
 		background-color: #b0b0b0;
-		float:left;
 
-		position: absolute;
-		top: 130px;
-		left: 19px;
+		position: relative;
+		/* top: 130px; */
 
-		border-radius: 15px;
-		-webkit-border-radius: 15px;
+		border-radius: 15px 0 15px;
+		-webkit-border-radius: 15px 0 15px;
 		-moz-border-radius: 15px;
 		-o-border-radius: 15px;
 	}
-
+	div#screen-one
+	{
+	background-color: #c00d0d;
+	}
+	
+	div#simpleButtons
+	{
+	/* width: calc(100vh - 15%); */
+	width: 85%;
+	height:auto; /* needs to resize based on its inner content */
+	/* background-color: green; */
+	/* top: 474px;*/
+	position: relative;
+	align-items: center;
+	
+	}
+	
+	/* force readable fonts */
+	#pokeSearchContainer {
+		font-size:x-large;
+		margin: 0 10.45% 0 0;
+	}
+	
 	#search-bar{
-		border: darkgreen 3px solid;
-		background-color: #0abd0a;
-		border-radius: 10px;
+		/* border: darkgreen 3px solid; */
+		/* background-color: #0abd0a; */
+		background-color: whitesmoke;
+		border-radius: 15px 15px 0 0;
 		padding: 1%;
+		border: 10px solid #b0b0b0;
 	}
 
 	#search-bar:active{
@@ -294,12 +355,12 @@
 
 	div#picture
 	{
-		height: 175px;
+		height: 80%;
 		/* width: 254px; becomes more responsive without width*/ 
 		margin-top: 20px;
 		margin-bottom: 9px;
 		background-color: whitesmoke;
-		border: 3px solid #494949;
+		border: 10px solid #494949;
 		clear: both;
 
 		border-radius: 15px;
@@ -391,13 +452,10 @@
 
 	div#bigbluebutton
 	{
-		height: 50px;
-		width: 50px;
+		min-width: 100px;
+	    min-height: 100px;
+	    box-sizing: content-box;
 		background-color: #000;
-
-		position: absolute;
-		top: 395px;
-		left: 30px;
 
 		border-radius: 100px;
 		-webkit-border-radius: 100px;
@@ -414,14 +472,14 @@
 		-moz-box-shadow: -3px 2px #001c91;
 		-o-box-shadow: -3px 2px #001c91;
 
-		-webkit-animation: glowing 1300ms infinite;
-        -moz-animation: glowing 1300ms infinite;
-        -o-animation: glowing 1300ms infinite;
-        animation: glowing 1300ms infinite;
+		-webkit-animation: start-search-glowing 1300ms infinite;
+        -moz-animation: start-search-glowing 1300ms infinite;
+        -o-animation: start-search-glowing 1300ms infinite;
+        animation: startSearchGlowingPolygon 1300ms infinite;
 
 	}
 
-	@-webkit-keyframes glowing {
+	@-webkit-keyframes start-search-glowing {
         0% {
           background-color: #0091b2;
           -webkit-box-shadow: 0 0 3px #0091b2;
@@ -435,7 +493,7 @@
           -webkit-box-shadow: 0 0 3px #0091b2;
         }
       }
-      @keyframes glowing {
+      @keyframes start-search-glowing {
         0% {
           background-color: #0091b2;
           box-shadow: 0 0 3px #0091b2;
@@ -457,12 +515,12 @@
       }
       svg {
         fill: blue;
-        -webkit-animation: glowing-polygon 1300ms infinite;
-        -moz-animation: glowing-polygon 1300ms infinite;
-        -o-animation: glowing-polygon 1300ms infinite;
-        animation: glowing-polygon 1300ms infinite;
+        -webkit-animation: start-search-glowing-polygon 1300ms infinite;
+        -moz-animation: start-search-glowing-polygon 1300ms infinite;
+        -o-animation: start-search-glowing-polygon 1300ms infinite;
+        animation: start-search-glowing-polygon 1300ms infinite;
       }
-      @-webkit-keyframes glowing-polygon {
+      @-webkit-keyframes start-search-glowing-polygon {
         0% {
           fill: #0091b2;
           -webkit-filter: drop-shadow( 0 0 3px #0091b2);
@@ -476,7 +534,7 @@
           -webkit-filter: drop-shadow( 0 0 3px #0091b2);
         }
       }
-      @keyframes glowingPolygon {
+      @keyframes startSearchGlowingPolygon {
         0% {
           fill: #0091b2;
           filter: drop-shadow( 0 0 3px #0091b2);
@@ -497,13 +555,13 @@
 
 	div#barbutton1
 	{
-		height: 13px;
-		width: 50px;
+		height: 3vw;
+    	width: 8vw;
 
-		position: absolute;
-		top: 405px;
-		left: 100px;
-
+/* 		position: absolute;
+ 	top: 405px;*/
+/* 		left: 100px;
+ */
 		border-radius: 100px;
 		-webkit-border-radius: 100px;
 		-moz-border-radius: 100px;
@@ -522,13 +580,13 @@
 
 	div#barbutton2
 	{
-		height: 13px;
-		width: 50px;
+		height: 3vw;
+    	width: 8vw;
 
-		position: absolute;
-		top: 405px;
-		left: 165px;
-
+/* 		position: absolute;
+		top: 405px; */
+/* 		left: 165px;
+ */
 		border-radius: 100px;
 		-webkit-border-radius: 100px;
 		-moz-border-radius: 100px;
@@ -547,23 +605,24 @@
 
 	div#cross
 	{
-		width: 90px;
-		height: 90px;
-
-		position: absolute;
-		top: 394px;
-		left: 230px;
-	}
+		width: 180px;
+		height: 180px;
+		position: relative;
+		
+/* 		position: absolute;
+		top: 394px; */
+/* 		left: 230px;
+ */	}
 
 	div#topcross
 	{
-		width: 30px;
-		height: 30px;
+		width: 60px;
+		height: 60px;
 		background-color: #222;
 
 		position: absolute;
 		top: 0;
-		left: 30px;
+		left: 60px;
 
 		box-shadow: -3px 2px #010101;
 		-webkit-box-shadow: -3px 2px #010101;
@@ -583,14 +642,14 @@
 
 	div#leftcross
 	{
-		width: 30px;
-		height: 30px;
+		width: 60px;
+		height: 60px;
 		background-color: #222;
 		z-index: 1;
 
 		position: absolute;
 		left: 0;
-		top: 30px;
+		top: 60px;
 
 		box-shadow: -3px 2px #010101;
 		-webkit-box-shadow: -3px 2px #010101;
@@ -610,28 +669,49 @@
 
 	div#midcross
 	{
-		width: 30px;
-		height: 30px;
+		width: 60px;
+		height: 60px;
 		background-color: #222;
 
 		position: absolute;
-		top: 30px;
-		left: 30px;
+		top: 60px;
+		left: 60px;
 
 		box-shadow: -3px 2px #010101;
 		-webkit-box-shadow: -3px 2px #010101;
 		-moz-box-shadow: -3px 2px #010101;
 		-o-box-shadow: -3px 2px #010101;
 	}
-
-	div#rightcross
+	div#rightcross 
 	{
-		width: 30px;
-		height: 30px;
+	    width: 60px;
+	    height: 60px;
+	    background-color: #222;
+	    position: absolute;
+	    top: 60px;
+	    right: 0;
+	    box-shadow: -3px 2px #010101;
+	    -webkit-box-shadow: -3px 2px #010101;
+	    -moz-box-shadow: -3px 2px #010101;
+	    -o-box-shadow: -3px 2px #010101;
+	    border-top-right-radius: 5px;
+	    -webkit-border-top-right-radius: 5px;
+	    -moz-border-top-right-radius: 5px;
+	    -o-border-top-right-radius: 5px;
+	    border-bottom-right-radius: 5px;
+	    -webkit-border-bottom-right-radius: 5px;
+	    -moz-border-bottom-right-radius: 5px;
+	    -o-border-bottom-right-radius: 5px;
+	 }
+
+	div#detailScreencross
+	{
+		width: 60px;
+		height: 60px;
 		background-color: #222;
 
 		position: absolute;
-		top: 30px;
+		top: 60px;
 		right: 0;
 
 		box-shadow: -3px 2px #010101;
@@ -652,13 +732,13 @@
 
 	div#botcross
 	{
-		width: 30px;
-		height: 30px;
+		width: 60px;
+		height: 60px;
 		background-color: #222;
 
 		position: absolute;
 		bottom: 0;
-		left: 30px;
+		left: 60px;
 
 		box-shadow: -3px 2px #010101;
 		-webkit-box-shadow: -3px 2px #010101;
@@ -685,8 +765,8 @@
 		border-bottom: 10px solid #111;
 
 		position: absolute;
-		top: 5px;
-		left: 4px;
+		top: calc(1/3 * 100%);
+		left: calc(1/3 * 100%);
 	}
 
 	div#downT
@@ -698,8 +778,8 @@
 		border-top: 10px solid #111;
 
 		position: absolute;
-		bottom: 5px;
-		left: 4px;
+		bottom: calc(1/3 * 100%);
+		left: calc(1/3 * 100%);
 	}
 
 	div#leftT
@@ -711,11 +791,24 @@
 		border-bottom: 10px solid transparent;
 
 		position: absolute;
-		top: 5px;
-		left: 4px;
+		top: calc(1/3 * 100%);
+		left: calc(1/3 * 100%);
 	}
+	
+		div#rightT
+	{
+	   width: 0;
+	   height: 0;
+	   border-top: 10px solid transparent;
+	   border-left: 10px solid #111;
+	   border-bottom: 10px solid transparent;
+	   position: absolute;
+	   top: calc(1/3 * 100%);
+	   right: calc(1/3 * 100%);
+	}
+	
 
-	div#rightT
+	div#detailScreenT
 	{
 		width: 0;
 		height: 0;
@@ -727,6 +820,8 @@
 		top: 5px;
 		right: 5px;
 	}
+	
+
 
 	div#midCircle
 	{
@@ -734,8 +829,8 @@
 		height: 20px;
 
 		position: absolute;
-		top: 5px;
-		left: 4px;
+		top: calc(1/3 * 100%);
+		left: calc(1/3 * 100%);
 
 		border-radius: 30px;
 		-webkit-border-radius: 30px;
@@ -816,19 +911,45 @@
 		-o-box-shadow: -10px 9px #5e0000;
 	}
 
+	.emboss {
+		text-shadow: -1px -1px rgba(0,0,0,0.5), 1px 1px rgba(255,255,255,0.5);
+  		color: rgba(255, 240, 184, 0.5);
+/* 		border: ridge 5px grey;*/
+  		font-size:xx-large;
+  		position:absolute;
+  		left:0;
+ 
+	}
+	
+	.emboss-relative-pos {
+		text-shadow: -1px -1px rgba(0,0,0,0.5), 1px 1px rgba(255,255,255,0.5);
+  		color: rgba(255, 240, 184, 0.5);
+/* 		border: ridge 5px grey;*/
+  		font-size:xx-large;
+  		position:relative;
+ 
+	}
+	
+
+	
+	input, select, textarea {
+  		font-size: x-large !important;
+	}
+	
 	div#stats
 	{
-		height: 160px;
-		width: 280px;
-		padding: 10px;
+		height: 25vh;
+		width: 85%;
+		padding: 10px 20px;
 		background-color: #30da0c;
 		z-index: 1;
-		font-size: 13px;
+		font-size: xxx-large;
 		font-family: arial, sans-serif;
-
-		position: absolute;
-		top: 130px;
-		left: 25px;
+		
+		margin: 2vw 6vw 0 6vw;
+		position: relative;
+		
+		
 
 		border-radius: 15px;
 		-webkit-border-radius: 15px;
@@ -840,32 +961,37 @@
 		-moz-box-shadow: 0 0 20px #003300 inset;
 		-o-box-shadow: 0 0 20px #003300 inset;
 	}
-
+	div#yellowBoxes button{
+		font-size: xxx-large;
+		/* font-family: "PokemonPixel" !important; */
+		font-family: arial, sans-serif;
+		text-align:center;
+/* 		margin: auto;
+		width: 50%;
+		border: 3px solid green;
+		padding: 10px; */
+	}
 	div#blueButtons1
 	{
 		z-index: 1;
-
-		position: absolute;
-		top: 295px;
-		left: 49px;
+		position: relative;
+		width: 85%;
+		padding: 2% 0 0 0;
 	}
 
 	div#blueButtons2
 	{
 		z-index: 1;
-
-		position: absolute;
-		top: 335px;
-		left: 49px;
+		position: relative;
+		width: 85%;
+		padding: 2% 0 0 0;
 	}
 
 	div.blueButton
 	{
-		height: 35px;
-		width : 45px;
+		height: 6vw;
+		width : 12vw;
 		background-color: #003300;
-		float: left;
-		margin-right: 7px;
 
 		border-radius: 10px;
 		-webkit-border-radius: 10px;
@@ -882,16 +1008,16 @@
 		-moz-box-shadow: -1px 2px #001c91;
 		-o-box-shadow: -1px 2px #001c91;
 	}
+	
+
 
 	div#barbutton3
 	{
-		height: 13px;
-		width: 50px;
-		z-index: 1;
 
-		position: absolute;
-		top: 385px;
-		left: 210px;
+		z-index: 1;
+		position: relative;
+		height: 3vw;
+		width : 8vw;
 
 		border-radius: 100px;
 		-webkit-border-radius: 100px;
@@ -911,13 +1037,10 @@
 
 	div#barbutton4
 	{
-		height: 13px;
-		width: 50px;
 		z-index: 1;
-
-		position: absolute;
-		top: 385px;
-		left: 270px;
+		position: relative;
+		height: 3vw;
+		width : 8vw;
 
 		border-radius: 100px;
 		-webkit-border-radius: 100px;
@@ -934,17 +1057,24 @@
 		-moz-box-shadow: -1px 2px #7b0000;
 		-o-box-shadow: -1px 2px #7b0000;
 	}
+	
+	div#miniButtonGroup
+	{
+		z-index: 1;
+	    position: relative;
+	    width: 85%;
+	    padding: 2% 0 0 0;
+	}
+	div#miniButtons,div#barButtons {
+		width: 21%;
+	}
 
 	div#miniButtonGlass4
 	{
-		width: 15px;
-		height: 15px;
-		float: left;
 		z-index: 1;
-
-		position: absolute;
-		top: 383px;
-		left: 25px;
+		position: relative;
+		height: 4vw;
+		width : 4vw;
 
 		box-shadow: 0 0 10px #490000;
 		-webkit-box-shadow: 0 0 10px #490000;
@@ -964,14 +1094,10 @@
 
 	div#miniButtonGlass5
 	{
-		width: 15px;
-		height: 15px;
-		float: left;
 		z-index: 1;
-
-		position: absolute;
-		top: 383px;
-		left: 51px;
+		position: relative;
+		height: 4vw;
+		width : 4vw;
 
 		box-shadow: 0 0 10px #490000;
 		-webkit-box-shadow: 0 0 10px #490000;
@@ -988,18 +1114,24 @@
 		background: -moz-radial-gradient(#0abd0a, #057b05);
 		background: -o-radial-gradient(#0abd0a, #057b05);
 	}
-
+	
+	div#yellowBoxes
+	{
+		z-index: 1;
+	    position: relative;
+	    width: 85%;
+	    padding: 2% 0 0 0;
+	    margin: 0 0 19.45%;
+	}
 	div#yellowBox1
 	{
-		width: 140px;
-		height: 70px;
+		height: 25vw;
+		width : 40vw;
 		z-index: 1;
 		background-color: #ffff00;
 
-		position: absolute;
-		top: 415px;
-		left: 25px;
-
+		position: relative;
+		
 		border-radius: 15px;
 		-webkit-border-radius: 15px;
 		-moz-border-radius: 15px;
@@ -1013,15 +1145,13 @@
 
 	div#yellowBox2
 	{
-		width: 140px;
-		height: 70px;
+		height: 25vw;
+		width : 40vw;
 		z-index: 1;
 		background-color: #ffff00;
 
-		position: absolute;
-		top: 415px;
-		left: 185px;
-
+		position: relative;
+		
 		border-radius: 15px;
 		-webkit-border-radius: 15px;
 		-moz-border-radius: 15px;
@@ -1040,8 +1170,8 @@
         list-style: none;
         padding: 1%;
         max-height: 100px;
-        overflow: hidden;
-		margin-top: 5px;
+/*         overflow: hidden;
+ */		margin-top: 5px;
     }
 	#stats-list li {
 	display:flex; /*this is simply contained and flex so that typewriter can specifically work as intended*/
@@ -1049,6 +1179,34 @@
 	.error-notice b {
 		color: crimson;
 	}
+	
+	.console-waiting {
+		width:0;
+		overflow: hidden; /* Ensures the content is not revealed until the animation */
+		border-right: .15em solid rgb(54, 55, 61); /* The typwriter cursor */
+		white-space: nowrap; /* Keeps the content on a single line */
+		margin: 0 auto auto 0;  /*Gives that scrolling effect as the typing happens */
+		letter-spacing: .12em; /* Adjust as needed */
+		animation: 
+		  typing 1s steps(40, end) forwards,
+		  blink-caret .75s step-end forwards;
+		/* animation-delay: 2s; */
+	}
+	
+	
+	.console-ready {
+		width:0;
+		overflow: hidden; /* Ensures the content is not revealed until the animation */
+		border-right: .15em solid rgb(54, 55, 61); /* The typwriter cursor */
+		white-space: nowrap; /* Keeps the content on a single line */
+		margin: 0 auto auto 0;  /*Gives that scrolling effect as the typing happens */
+		letter-spacing: .12em; /* Adjust as needed */
+		animation: 
+		  typing 1s steps(40, end) forwards,
+		  blink-caret .75s step-end infinite;
+		/* animation-delay: 2s; */
+	}
+	
 	.typewriter :nth-child(1) div {
 		width:0;
 		overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -1114,7 +1272,15 @@
 }
 
 @media screen and (max-width:1108px) and (orientation:portrait){
-
+ 	html, body, #pokedex 
+	{
+	  max-width: 98%;
+	  overflow-x: hidden;
+	} 
+	body {
+  	position: relative;
+	}
+	
 	div#pokedex
 	{
 		width: 100%;
@@ -1148,7 +1314,7 @@
 	div#bg_curve1_left
 	{
 		width: 100vw;
-		height: 6vh;
+		height: 5vh;
 		background-color: #8b0000;
 
 		box-shadow: -10px 9px #5e0000;
@@ -1164,10 +1330,11 @@
 		div#curve1_left
 	{
 		width: 50.50vw;
-		height: 10vh;
+		/* height: 10vh; */
+		height: auto;
 		background-color: #8b0000;
 		float: left;
-		padding: 15px 0 0 15px;
+		padding: 15px 15px 15px 15px;
 
 		position: absolute;
 		top: 0;
@@ -1190,14 +1357,17 @@
 	}
 		div#curve2_left /* right right */
 	{
-		width: 50.50vw;
-		height: 94vh; 
+		width: 50.0vw; /* for mobile screen */
+ 		/* width: 52.02vw; for desktop portrait screen */
+/* 		height: 94vh;  */
 		background-color: #c00d0d;
+		/* background-color: #644efd; */
 		float: right;
 
-		position: absolute;
-		bottom: 0;
+		position: relative;
+		/* bottom: 0; */
 		right: 0;
+		top: -42%;
 
 		border-top-left-radius:85px 60px;
 		-webkit-border-top-left-radius: 85px 60px;
@@ -1209,12 +1379,13 @@
 	div#bg_curve2_left /* background */
 	{
 		width: 100vw;
-		height: 90vh; /* vh for 100% screen height */
+		/* height: 90vh; vh for 100% screen height */
+		height: 4vh;
 		background-color: #c00d0d;
 		/* background-color: lime; */
 		
 
-		box-shadow: -10px 9px #5e0000;
+/* 		box-shadow: -10px 9px #5e0000;
 		-webkit-box-shadow: -10px 9px #5e0000;
 		-moz-box-shadow: -10px 9px #5e0000;
 		-o-box-shadow: -10px 9px #5e0000;
@@ -1222,18 +1393,22 @@
 		border-bottom-left-radius: 30px;
 		-webkit-border-bottom-left-radius: 30px;
 		-moz-border-bottom-left-radius: 30px;
-		-o-border-bottom-left-radius: 30px;
+		-o-border-bottom-left-radius: 30px; */
 	}
 	div#junction
 	{
 		width: 60px;
-		height: 100%; /* we need this to be max width possible within it's current container */
-		float: right;
-		
-		background: linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);	
-		background: -webkit-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
-		background: -moz-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
-		background: -o-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+ 		/* height: calc(100vh - 6%); */
+	    height: 100%;
+	    /* float: right; */
+	    background: linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+	    background: -webkit-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+	    background: -moz-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+	    background: -o-linear-gradient(left, #8b0000 0%, #c00d0d 50%, #8b0000 100%);
+	    position: fixed;
+	    right: 0;
+	    top: 0;
+	    z-index: 1;
 	}
 	div#junction1
 	{
@@ -1258,25 +1433,61 @@
 		border-bottom: 2px solid #330000;
 	}
 
-	div#right, div#screen, div#bigbluebutton, div#barbutton1, div#barbutton2, div#cross
-	{
-		display: none;
-	}
 	
 	div#floating-stats
 	{
 		position:fixed;
 		float:right;
 		right:0;
-		top:0;
+		bottom:0;
 		width:14%;
 		padding:6px;
+		margin:20px;
 		z-index:100;
 		border-radius:10px;
 		background: grey;
 		color:white;
 		font-size:20px;
-		display:none;
+		/* display:none; */
 	}
+	
+	
+	/* DESKTOP (SIMULATED MOBILE) */
+	@media screen and (max-width:989px) and (orientation:portrait){
+	
+		div#curve2_left /* right right */
+		{
+	 		/* width: 52.02vw; for desktop portrait screen */
+	 		width: 50.21vw; /* portrait */
+	 		
+		}
+		#pokeSearchContainer {
+		margin: 0 7.45% 0 0;
+		}
+	
+	
+	}
+	
+	
+	/* No Screens */
+		div#detailScreen, div#screen, div#bigbluebutton, div#barbutton1, div#barbutton2, div#cross
+	{
+		display: none;
+	}
+	
+	/* Left Panel Screen Only */
+			div#detailScreen, div#screen, div#bigbluebutton, div#barbutton1, div#barbutton2, div#cross
+	{
+		display: block;
+		
+	}
+	
+	
+	
+	
+	 div#bg_curve1_right {
+/* 	 	display: none;
+ */	 }
+	
 
 }

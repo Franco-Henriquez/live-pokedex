@@ -9,6 +9,9 @@ var pokeSearch = document.getElementById('search-bar')
 var spritePic = document.getElementById('sprite-pic')
 var spritePicShiny = document.getElementById('sprite-pic-shiny')
 var pokeStats = document.getElementById('stats-list');
+var searchContainer = document.getElementById('pokeSearchContainer');
+var searchHistoryTable = document.getElementById('search-history');
+var standByMsg = document.getElementById('stand-by');
 var pokedexNumLimit = 1008;
 var log = console.log.bind(log)
 var pokemon
@@ -28,14 +31,25 @@ function getVal(){
 
 async function iChooseU(){
     log("Function IchooseYou " + pokemon);
+   	standByMsg.style.display = 'none';
     if (pokemon && pokemon != "invalid pokemon") {
         var pokeResults = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         // log(pokeResults)
         pokeResults = await pokeResults.json()
+        var wordCount = 0;
+		for (const key in pokeResults){
+		  if(pokeResults.hasOwnProperty(key)){
+		    //console.log(`${key} : ${pokeResults[key]}`)
+		    var words = pokeResults[key].toString().split(' '); //any spaces between them, means they are words, store them
+		    wordCount += words.length;
+		  }
+		}
+        log("Word count: "+wordCount);
+        receivingData(wordCount);
         var pokemonName = capitalize(pokeResults.name);
         // log(pokeResults)
         var pokeTypes = pokeTypesCheck(pokeResults);
-        log(pokeResults.height)
+        //log(pokeResults.height)
         var pokeHeight = parseInt(pokeResults.height) * 0.1; //convert to kg
         var pokeHeight = Math.round(pokeHeight * 10) / 10; //set to only 1 decimal place
         // var pokeWeight = parseInt(pokeResults.weight) ;
@@ -74,9 +88,9 @@ function seeShinySprite(){
 }
 
 
-function capitalize(s)
+function capitalize(word)
 {
-    return s[0].toUpperCase() + s.slice(1);
+    return word[0].toUpperCase() + word.slice(1);
 }
 
 function pokeTypesCheck(pokeData){
@@ -95,6 +109,41 @@ async function listPokeStats(pokeStats,pokeTypes,pokemonName){
 
 async function sleep(ms) {
     return new Promise(val => setTimeout(val, ms));
+}
+
+
+//DASHBOARD ONLY (HIDE POKEMON SEARCH STATS)
+function loadDashboard() {
+	searchContainer.classList.remove("d-flex"); //flex uses !important and it can't be undone, so we'll just remove the class
+	searchContainer.style.display = 'none';
+	standByMsg.style.display = 'none';
+	pokeStats.style.display = 'none';
+}
+
+//POKESEARCH ONLY
+function pokeSearchView() {
+	//resets
+	pokeStats.innerHTML = "";
+	
+	searchContainer.style.display = 'block';
+	searchContainer.classList.add("d-flex");
+	standByMsg.style.display = 'block';
+	pokeStats.style.display = 'block';
+	searchHistoryTable.style.display = 'none';
+}
+
+function receivingData(pings){
+	//getComputedStyle(document.documentElement)
+    //	.getPropertyValue('--api-data-pings'); // #999999
+    //getComputedStyle(document.documentElement)
+    //	.getPropertyValue('--api-millisecs');
+    var pingFrequency = Math.floor(Math.random() * (pings*.10)) + 40;
+    log("pingFrequency: "+pingFrequency);
+    document.documentElement.style
+    .setProperty('--api-millisecs', pingFrequency+'ms');
+    document.documentElement.style
+    .setProperty('--api-data-pings', pings);
+
 }
 
 

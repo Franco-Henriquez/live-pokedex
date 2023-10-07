@@ -11,19 +11,14 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- <meta name="mobile-web-app-capable" content="yes"> -->
 	  <meta name="viewport" content="user-scalable=no, shrink-to-fit=yes" />
-<!-- 	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=3.74, shrink-to-fit=no"> -->
- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
- 	<link href="css/style.css" rel="stylesheet">
- 	<link href="css/loading.css" rel="stylesheet">
- 	<link href="css/glow_animations.css" rel="stylesheet">
+<!-- 	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=3.74, shrink-to-fit=no">
+ -->	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">	<link href="css/style.css" rel="stylesheet">
 	<script src="js/script.js" defer></script>
-	<script src="js/loading.js" defer></script>
-	<script src="js/screen_debug.js" defer></script>
-		
+	<script src="js/screen_debug.js" defer></script>	
 	
 	<title>Live Pokédex</title>
 </head>
-<body onload="loadDashboard(),getWidthHeight(),getVal()" class="flex-container">
+<body onload="getWidthHeight(),getVal(),loadPokeSearch()" class="flex-container">
 <!-- 	<div class="d-flex p-1 justify-content-around"> -->	
 	<div id="pokedex">
         <div id="floating-stats" >STATS:<br></div>
@@ -34,10 +29,6 @@
 	            <div id="bg_curve1_left"></div>
 	            <div id="bg_curve2_left">
 	                <div id="curve2_left">
-	                    <div id="pokeSearchContainer" class="p-2 d-flex flex-column align-items-center">
-		                    <label class="emboss-relative-pos">Search Pokémon:</label>
-		                    <input id="search-bar" type="text" placeholder="Pokémon or Pokédex ID" onchange="getVal()">
-	                	</div>
 		            </div>
 	            </div>
 	            <div id="curve1_left">
@@ -62,10 +53,10 @@
 				         <div id="buttontopPicture2"></div>
 				     </div>
 				     <div id="picture">
-				         <img id="sprite-pic" src="./images/pokeball.256x256.png" alt="Regular Front Sprite Not Available"
-				             height="100%" />
-				         <img id="sprite-pic-shiny" src="./images/pokeball.256x256.png" alt="Shiny Preview Not Available"
-				             height="100%" />
+				         <img id="sprite-pic" src="./img/pokeball.png" alt="Regular Front Sprite Not Available"
+				             height="170" />
+				         <img id="sprite-pic-shiny" src="./img/pokeball.png" alt="Shiny Preview Not Available"
+				             height="170" />
 				     </div>
 				     <div id="buttonbottomPicture"></div>
 				     <div id="speakers">
@@ -76,10 +67,7 @@
 				     </div>
 				 </div> <!-- END SCREEN 1 -->
 				 <div id="simpleButtons" class="p-2 d-flex justify-content-around"> <!-- Buttons 1 -->
-					  <div class="bg-transparent">
-					  	<div onclick="iChooseU()" id="bigbluebutton"></div>
-					  	<p class="emboss">START SEARCH</p>
-					  </div>
+					  <div onclick="iChooseU()" id="bigbluebutton"></div>
 					  <div id="barbutton1"></div>
 					  <div onclick="seeShinySprite()" id="barbutton2"></div>
 					  <div id="cross">
@@ -104,11 +92,12 @@
 		            <!-- DETAIL SCREEN -->
 		        <div id="detailScreen" class="d-flex flex-column align-items-center "> <!-- class name 'row' might need to be added back -->
 		            <div id="stats">
-		            	<div id="stand-by" class="console-waiting">Awaiting Search Instruction
-		            		<div class="d-inline-flex dot-elastic"></div>
-		            	</div>	
+			            <div id="pokeSearchContainer">
+		                    <label>Poké Search:</label>
+		                    <input id="search-bar" type="text" placeholder="Pokémon or Pokédex ID" onchange="getVal()">
+	                	</div>
 	                	<ul id="stats-list" class="typewriter"></ul>
-						<table id="search-history" class="table table-sm">
+						<table class="table table-sm ">
 							<thead>
 								<tr>
 									<th scope="col">ID</th> <!-- pull from SearchHistory -->
@@ -123,15 +112,15 @@
 									<tr>
 										<td>
 											<c:if test="${thisEntry.searchType} == 'CARD'">
-											<a class="typewriter" href="/search_card/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
+											<a href="/search_card/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
 											</c:if>
 											<c:if test="${thisEntry.searchType} == 'DEX'">
-											<a class="typewriter" href="/search_pokeid/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
+											<a href="/search_pokeid/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
 											</c:if>
 										</td>
-										<td class="typewriter"><c:out value="${thisEntry.card.cardName}"/></td>
-										<td class="typewriter"><c:out value="${thisEntry.trainer.trainerName}"/></td>
-										<td class="typewriter"><c:out value="${thisEntry.searchType}"/></td>														
+										<td><c:out value="${thisEntry.card.cardName}"/></td>
+										<td><c:out value="${thisEntry.trainer.trainerName}"/></td>
+										<td><c:out value="${thisEntry.searchType}"/></td>														
 										</tr>
 							</c:forEach> 
 							</tbody>
@@ -163,7 +152,7 @@
 		            </div>
 		            <div id="yellowBoxes" class="d-flex align-items-center justify-content-between " >
 			            <div id="yellowBox1" class="d-flex align-items-center"><button class="w-100 btn">CARD SEARCH</button></div>
-			            <div id="yellowBox2" onclick="pokeSearchView()" class="d-flex align-items-center"><button class="w-100 btn">POKÉ SEARCH</button></div>
+			            <div id="yellowBox2" class="d-flex align-items-center"><button class="w-100 btn">POKÉ SEARCH</button></div>
 		            </div>
 		        </div><!-- END DETAIL SCREEN -->
 	        </div> <!-- end container for screens (id=left)-->
