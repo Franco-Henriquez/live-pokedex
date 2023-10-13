@@ -7,14 +7,14 @@
 
 	div#miniButtonGlass3
 	{
-		-webkit-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        -moz-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        -o-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        animation: dataReceivingGlowing var(--api-millisecs) var(--api-data-pings);
+		-webkit-animation: glowing-green var(--api-millisecs) var(--api-data-pings);
+        -moz-animation: glowing-green var(--api-millisecs) var(--api-data-pings);
+        -o-animation: glowing-green var(--api-millisecs) var(--api-data-pings);
+        animation: glowingGreen var(--api-millisecs) var(--api-data-pings);
 
 	}
 
-	@-webkit-keyframes start-search-glowing {
+	@-webkit-keyframes glowing-green {
         0% {
           background-color: #f7ff00;
           -webkit-box-shadow: 0 0 6px #dfff00;
@@ -28,17 +28,20 @@
           -webkit-box-shadow: 0 0 6px #97ff00;
         }
       }
-      @keyframes start-search-glowing {
+      @keyframes glowing-green {
         0% {
           background-color: #f7ff00;
+          background: webkit-radial-gradient(#b0fb7b, #dfff00);
           box-shadow: 0 0 6px #dfff00;
         }
         50% {
           background-color: #a3ff00;
+          background: webkit-radial-gradient(#b0fb7b, #a3ff00);
           box-shadow: 0 0 20px #c7ff00;
         }
         100% {
           background-color: #8bff00;
+          background: webkit-radial-gradient(#b0fb7b, #97ff00);
           box-shadow: 0 0 6px #97ff00;
         }
       }
@@ -49,37 +52,139 @@
         margin-left: 10px;
       }
       svg {
-        fill: blue;
-        -webkit-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        -moz-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        -o-animation: data-receiving-glowing var(--api-millisecs) var(--api-data-pings);
-        animation: data-receiving-glowing-polygon var(--api-millisecs) var(--api-data-pings);
+      	background: -moz-radial-gradient(#6aff00, #50fb05);
+        fill: green;
+        -webkit-animation: glowing-green-polygon var(--api-millisecs) var(--api-data-pings);
+        -moz-animation: glowing-green-polygon var(--api-millisecs) var(--api-data-pings);
+        -o-animation: glowing-green-polygon var(--api-millisecs) var(--api-data-pings);
+        animation: glowing-green-polygon var(--api-millisecs) var(--api-data-pings);
       }
-      @-webkit-keyframes data-receiving-glowing-polygon {
+      @-webkit-keyframes glowing-green-polygon {
         0% {
           fill: #f7ff00;
+          background: webkit-radial-gradient(#b0fb7b, #dfff00);
           -webkit-filter: drop-shadow( 0 0 6px #dfff00);
         }
         50% {
           fill: #a3ff00;
+          background: webkit-radial-gradient(#b0fb7b, #a3ff00);
           -webkit-filter: drop-shadow( 0 0 20px #c7ff00);
         }
         100% {
           fill: #8bff00;
+          background: -moz-radial-gradient(#6aff00, #50fb05);
+          background: webkit-radial-gradient(#b0fb7b, #97ff00);
           -webkit-filter: drop-shadow( 0 0 6px #97ff00);
         }
       }
-      @keyframes dataReceivingGlowing {
+      @keyframes glowingGreen {
         0% {
           fill: #f7ff00;
+          background: webkit-radial-gradient(#b0fb7b, #dfff00);
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#8ab56c), to(#808d23));
           filter: drop-shadow( 0 0 6px #dfff00);
         }
         50% {
           fill: #a3ff00;
+          background: webkit-radial-gradient(#b0fb7b, #a3ff00);
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#7aaf55), to(#87d300));
           filter: drop-shadow( 0 0 20px #c7ff00);
+          
         }
         100% {
           fill: #8bff00;
+          background: -moz-radial-gradient(#6aff00, #50fb05);
+          background: webkit-radial-gradient(#b0fb7b, #97ff00);
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#b0fb7b), to(#97ff00));
           filter: drop-shadow( 0 0 6px #97ff00);
         }
       }
+      
+      
+      
+      /* SMALL RED DOT ON SCREEN 1 */
+    div#buttonbottomPicture {      
+		-webkit-animation: glowing-red var(--api-millisecs) var(--api-data-pings);
+        -moz-animation: glowing-red var(--api-millisecs) var(--api-data-pings);
+        -o-animation: glowing-red var(--api-millisecs) var(--api-data-pings);
+        animation: glowingRed var(--api-millisecs) var(--api-data-pings);
+
+	}
+    @keyframes glowingRed {
+        0% {
+          fill: #f7ff00;
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#8b0000), to(#fb6505));
+          filter: drop-shadow( 0 0 6px #ffe300);
+        }
+        50% {
+          fill: #ffd700;
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#cf3030), to(#e72f12));
+          filter: drop-shadow( 0 0 20px #fffb00);
+        }
+        100% {
+          fill: #f00;
+          background: -moz-radial-gradient(#ff5400, #fb7805);
+          background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ff9b00), to(#ff0000));
+          filter: drop-shadow( 0 0 6px #df00ff);
+        }
+      }
+	
+	@-webkit-keyframes glowing-red {
+        0% {
+          background-color: #f7ff00;
+          -webkit-box-shadow: 0 0 6px #ffe300;
+        }
+        50% {
+          background-color: #ffd700;
+          -webkit-box-shadow: 0 0 20px #fffb00;
+        }
+        100% {
+          background-color: #f00;
+          -webkit-box-shadow: 0 0 6px #df00ff;
+        }
+      }
+      @keyframes glowing-red {
+        0% {
+          background-color: #f7ff00;
+          box-shadow: 0 0 6px #ffe300;
+        }
+        50% {
+          background-color: #ffd700;
+          box-shadow: 0 0 20px #fffb00;
+        }
+        100% {
+          background-color: #f00;
+          box-shadow: 0 0 6px #df00ff;
+        }
+      }
+      .svg-btn {
+        display: block;
+        width: 230px;
+        height: 230px;
+        margin-left: 10px;
+      }
+      svg {
+      	background: -moz-radial-gradient(#6aff00, #50fb05);
+        fill: red;
+        -webkit-animation: glowing-red-polygon var(--api-millisecs) var(--api-data-pings);
+        -moz-animation: glowing-red-polygon var(--api-millisecs) var(--api-data-pings);
+        -o-animation: glowing-red-polygon var(--api-millisecs) var(--api-data-pings);
+        animation: glowing-red-polygon var(--api-millisecs) var(--api-data-pings);
+      }
+      @-webkit-keyframes glowing-red-polygon {
+        0% {
+          fill: #f7ff00;
+          -webkit-filter: drop-shadow( 0 0 6px #ffe300);
+        }
+        50% {
+          fill: #ffd700;
+          -webkit-filter: drop-shadow( 0 0 20px #fffb00);
+        }
+        100% {
+          fill: #f00;
+          background: -moz-radial-gradient(#ff5400, #fb7805);
+          -webkit-filter: drop-shadow( 0 0 6px #df00ff);
+        }
+      }
+
+      

@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -88,6 +89,24 @@ public class Trainer {
         inverseJoinColumns = @JoinColumn(name = "card_id")
     )
     private List<Card> cardList; //current card list scanned by trainers
+    
+    //ONE TRAINER -(SEARCHED)- MANY POKEMON
+    //TRAINER_CARD N:M - MANY TO MANY
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "trainer_pokemon", 
+        joinColumns = @JoinColumn(name = "trainer_id"), 
+        inverseJoinColumns = @JoinColumn(name = "pokemon_id")
+    )
+    private List<Pokemon> pokemonList; //current card list scanned by trainers
+    
+    
+    //ONE TRAINER - (HISTORY) - MULTIPLE SEARCHES FOR POKEMON
+    //TRAINER_POKEMON N:M - MANY TO MANY
+    @OneToMany(mappedBy="trainer", fetch = FetchType.LAZY)
+    private List<SearchHistory> pokemon; //list trainers who have searched this card
+    
+    
     //-----------END RELATIONSHIPS-----------//
     
     
@@ -99,9 +118,9 @@ public class Trainer {
 			@NotEmpty(message = "Email is required!") @Email(message = "Please enter a valid email!") String email,
 			@NotEmpty(message = "Password is required!") @Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters") String password,
 			@NotEmpty(message = "Confirm Password is required!") @Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters") String confirmPassword,
-			@Size(min = 1, max = 8, message = "Favorite pokemon id must be 1-4 digits long") Integer favoritePokemon,
-			@Size(min = 3, max = 8, message = "Favorite pokemon card must be 3-8 characters long") String favoriteCard,
-			List<Card> cardList) {
+			@Range(min = 1, message = "Favorite pokemon ID must be 1-4 digits long") Integer favoritePokemon,
+			@Size(min = 3, max = 8, message = "Favorite pokemon CARD must be 3-8 characters long") String favoriteCard,
+			List<Card> cardList, List<Pokemon> pokemonList) {
 		this.trainerName = trainerName;
 		this.email = email;
 		this.password = password;
@@ -109,6 +128,7 @@ public class Trainer {
 		this.favoritePokemon = favoritePokemon;
 		this.favoriteCard = favoriteCard;
 		this.cardList = cardList;
+		this.pokemonList = pokemonList;
 	}
 	public Long getId() {
 		return id;
@@ -158,7 +178,15 @@ public class Trainer {
 	public void setCardList(List<Card> cardList) {
 		this.cardList = cardList;
 	}
+	public List<Pokemon> getPokemonList() {
+		return pokemonList;
+	}
+	public void setPokemonList(List<Pokemon> pokemonList) {
+		this.pokemonList = pokemonList;
+	}
     
+	
+
        
 
 }

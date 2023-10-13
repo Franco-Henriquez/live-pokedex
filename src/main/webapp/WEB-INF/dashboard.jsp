@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
@@ -16,14 +16,14 @@
  	<link href="css/style.css" rel="stylesheet">
  	<link href="css/loading.css" rel="stylesheet">
  	<link href="css/glow_animations.css" rel="stylesheet">
-	<script src="js/script.js" defer></script>
+ 	<script src="js/script.js" defer></script>
 	<script src="js/loading.js" defer></script>
 	<script src="js/screen_debug.js" defer></script>
 		
 	
 	<title>Live Pokédex</title>
 </head>
-<body onload="loadDashboard(),getWidthHeight(),getVal()" class="flex-container">
+<body onload="loadDashboard(),getWidthHeight(),getVal()" class="flex-container"> <!-- loadDashboard(), -->
 <!-- 	<div class="d-flex p-1 justify-content-around"> -->	
 	<div id="pokedex">
         <div id="floating-stats" >STATS:<br></div>
@@ -34,10 +34,6 @@
 	            <div id="bg_curve1_left"></div>
 	            <div id="bg_curve2_left">
 	                <div id="curve2_left">
-	                    <div id="pokeSearchContainer" class="p-2 d-flex flex-column align-items-center">
-		                    <label class="emboss-relative-pos">Search Pokémon:</label>
-		                    <input id="search-bar" type="text" placeholder="Pokémon or Pokédex ID" onchange="getVal()">
-	                	</div>
 		            </div>
 	            </div>
 	            <div id="curve1_left">
@@ -56,50 +52,74 @@
    	    		</div>
             </div> <!-- end top nav --> 
 			<div id="screen-one" class="d-flex flex-column align-items-center ">
+				 <div id="header-spacer" class="d-flex">
+				 	<div id="screen-tab" class="ms-auto m-0 p-2">
+		                    <h1 class="">Search Pokémon</h1>
+				 	</div> <!-- Half the space or 42.5% -->
+				 </div>
 				 <div id="screen" class=""> <!-- SCREEN 1 -->
 				     <div id="topPicture">
 				         <div id="buttontopPicture1"></div>
 				         <div id="buttontopPicture2"></div>
 				     </div>
-				     <div id="picture">
+				     <div id="picture" class="d-flex flex-column align-items-stretch">
 				         <img id="sprite-pic" src="./images/pokeball.256x256.png" alt="Regular Front Sprite Not Available"
 				             height="100%" />
 				         <img id="sprite-pic-shiny" src="./images/pokeball.256x256.png" alt="Shiny Preview Not Available"
 				             height="100%" />
 				     </div>
-				     <div id="buttonbottomPicture"></div>
-				     <div id="speakers">
-				         <div class="sp"></div>
-				         <div class="sp"></div>
-				         <div class="sp"></div>
-				         <div class="sp"></div>
+				     <div id="pokeSearchContainer" class="d-flex justify-content-around">
+					     <div id="buttonbottomPicture" class="align-self-center"></div>
+					     <input id="search-bar" class="align-self-start" type="text" placeholder="Pokémon Name or ID" onchange="getVal()">			
+					     <div id="speakers" class="align-self-center">
+					         <div class="sp"></div>
+					         <div class="sp"></div>
+					         <div class="sp"></div>
+					         <div class="sp"></div>
+					     </div>
 				     </div>
 				 </div> <!-- END SCREEN 1 -->
 				 <div id="simpleButtons" class="p-2 d-flex justify-content-around"> <!-- Buttons 1 -->
-					  <div class="bg-transparent">
-					  	<div onclick="iChooseU()" id="bigbluebutton"></div>
-					  	<p class="emboss">START SEARCH</p>
+					  <div class="bg-transparent d-flex flex-column justify-content-between">
+						  	<div class="align-self-center" onclick="iChooseU()" id="bigbluebutton"></div>
+						  	<p class="emboss align-self-center">START SEARCH</p>
 					  </div>
-					  <div id="barbutton1"></div>
-					  <div onclick="seeShinySprite()" id="barbutton2"></div>
-					  <div id="cross">
-					      <div id="leftcross">
-					          <div id="leftT"></div>
-					      </div>
-					      <div id="topcross">
-					          <div id="upT"></div>
-					      </div>
-					      <div id="rightcross">
-					          <div id="rightT"></div>
-					      </div>
-					      <div id="midcross">
-					          <div id="midCircle"></div>
-					      </div>
-					      <div id="botcross">
-					          <div id="downT"></div>
-					      </div>
+					  <div class="bg-transparent d-flex flex-column justify-content-between">
+						  	<div class="align-self-center" id="barbutton1"></div>
+						  	<p class="emboss align-self-center">N/A</p>
 					  </div>
+					  <div class="bg-transparent d-flex flex-column justify-content-between">
+						  	<div class="align-self-center" onclick="seeShinySprite()" id="barbutton2"></div>
+						  	<p class="emboss align-self-center">SHINY</p>
+					  </div>
+					  <div class="bg-transparent d-flex flex-column justify-content-between">
+							  <div id="cross">
+							      <div id="leftcross">
+							          <div id="leftT"></div>
+							      </div>
+							      <div id="topcross">
+							          <div id="upT"></div>
+							      </div>
+							      <div id="rightcross">
+							          <div id="rightT"></div>
+							      </div>
+							      <div id="midcross">
+							          <div id="midCircle"></div>
+							      </div>
+							      <div id="botcross">
+							          <div id="downT"></div>
+							      </div>
+							  </div>
+							  <p class="emboss align-self-center">NAV DEX</p>
+						</div>
 				 </div> <!-- END BUTTONS 1 -->
+<!-- 				 <div id="simpleButtonLabels" class="p-2 d-flex justify-content-between align-items-start">BUTTON 1 LABELS
+				 		<p class="emboss ">START SEARCH</p>
+				 		<p class="emboss ">???</p>
+					  	<p class="emboss ">SHINY</p>
+					  	<p class="emboss ">INDEX NAV</p>
+					  	
+				 </div> -->
 			</div>
 		            <!-- DETAIL SCREEN -->
 		        <div id="detailScreen" class="d-flex flex-column align-items-center "> <!-- class name 'row' might need to be added back -->
@@ -118,38 +138,51 @@
 								</tr>
 							</thead>
 							<tbody>
-							<!-- forEach needs to be placed here to go through each book post and list them  -->
+							<!-- forEach needs to be placed here to go through each book post and list them  -->			 				
 			 				<c:forEach var="thisEntry" items="${allHistory}">
 									<tr>
-										<td>
-											<c:if test="${thisEntry.searchType} == 'CARD'">
-											<a class="typewriter" href="/search_card/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
-											</c:if>
-											<c:if test="${thisEntry.searchType} == 'DEX'">
-											<a class="typewriter" href="/search_pokeid/${thisEntry.id}"><c:out value="${thisEntry.searchString}"/></a> 
-											</c:if>
-										</td>
-										<td class="typewriter"><c:out value="${thisEntry.card.cardName}"/></td>
-										<td class="typewriter"><c:out value="${thisEntry.trainer.trainerName}"/></td>
-										<td class="typewriter"><c:out value="${thisEntry.searchType}"/></td>														
-										</tr>
+									 	<c:if test="${thisEntry.searchType == 'CARD'}">
+
+											<td class="typewriter"><c:out value="${thisEntry.card.cardName}"/></td>
+											<td class="typewriter"><c:out value="${thisEntry.trainer.trainerName}"/></td>
+											<td class="typewriter"><c:out value="${thisEntry.searchType}"/></td>
+										</c:if>
+ 										<c:if test="${thisEntry.searchType == 'DEX'}">
+ 											<td>
+											<a class="typewriter" href="/search_pokeid/${thisEntry.pokemon.dexId}"><c:out value="${thisEntry.pokemon.dexId}"/></a>
+											</td>
+											<td class="typewriter"><c:out value="${thisEntry.pokemon.pokemonName}"/></td>
+											<td class="typewriter"><c:out value="${thisEntry.trainer.trainerName}"/></td>
+											<td class="typewriter"><c:out value="${thisEntry.searchType}"/></td>
+										</c:if>												
+									</tr>
 							</c:forEach> 
 							</tbody>
 						</table>
 		            </div>
 		            <div id="blueButtons1" class="d-flex align-items-center justify-content-around">
+		                <div class="blueButton d-flex flex-column align-items-center">
+		               		<img onclick="cardSearchView()" id="search-card-icon" src="./images/pokemon_card_small.png" alt="CARD SEARCH" height="100%" />
+				        </div>
+   		                <div class="blueButton d-flex flex-column align-items-center">
+		               		<img onclick="pokeSearchView()" id="search-pokemon-icon" src="./images/pokemon_search_pixel_ditto.png" alt="POKEMON SEARCH" height="100%" />
+				        </div>
+   		                <div class="blueButton d-flex flex-column align-items-center">
+		               		<img onclick="loadDashboard()" id="dashboard-icon" class="align-self-center" src="./images/pokedex_dash.png" alt="DASHBOARD" height="100%" />
+				        </div>
 		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
+   		                <div class="blueButton d-flex flex-column">
+		               		<a id="logout" class="align-self-center"  href="/logout">
+		               			<img onclick="loadDashboard()" id="logout-icon" src="./images/log_out_icon.png" alt="LOG OUT" height="100%" />
+							</a>
+				        </div>
 		            </div>
 		            <div id="blueButtons2" class="d-flex align-items-center justify-content-around">
+<!-- 		                <div class="blueButton"></div>
 		                <div class="blueButton"></div>
 		                <div class="blueButton"></div>
 		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
-		                <div class="blueButton"></div>
+		                <div class="blueButton"></div> -->
 		            </div>
 		            <div id="miniButtonGroup" class="d-flex align-items-center justify-content-between">
 		            	<div id="miniButtons" class="d-flex align-items-center justify-content-around">
@@ -162,10 +195,25 @@
 			            </div>
 		            </div>
 		            <div id="yellowBoxes" class="d-flex align-items-center justify-content-between " >
-			            <div id="yellowBox1" class="d-flex align-items-center"><button class="w-100 btn">CARD SEARCH</button></div>
-			            <div id="yellowBox2" onclick="pokeSearchView()" class="d-flex align-items-center"><button class="w-100 btn">POKÉ SEARCH</button></div>
+			            <div id="yellowBox1" class="d-flex align-items-center"><button class="w-100 btn">More Poke Stats Here</button></div>
+			            <div id="yellowBox2"  class="d-flex align-items-center"><button class="w-100 btn">N/A</button></div>
 		            </div>
 		        </div><!-- END DETAIL SCREEN -->
+		        <!-- FORM - ADD TO POKEMON HISTORY -->
+	 			<form:form id="searchHistoryForm" modelAttribute="newPokemon" method="post" action="/pokemon/new" onsubmit="(e)=>e.preventDefault(); console.log('Event 2: '+e);">
+					<div>
+<%-- 						<form:errors class="row btn-warning p-1 mt-2" path="pokemonName"/>
+						<form:errors class="row btn-warning p-1 mt-2" path="dexId"/> --%>
+					</div>
+					<form:hidden id="pokemonName" path="pokemonName" value="MissingNo" />
+					<form:hidden id="dexId" path="dexId" value="000" />
+					<%-- <form:hidden id="searchString" path="searchString" value="MissingNo" /> --%>
+					
+					<input id="submit" type="submit" value="submit" />
+				</form:form>
+				<!-- END POKEMON HISTORY FORM -->
+		        
+		        
 	        </div> <!-- end container for screens (id=left)-->
         </div> <!-- END LEFT SCREEN PANEL  --> <!-- #pokedex -->
 

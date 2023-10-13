@@ -4,7 +4,11 @@
 }
 
 
-
+/* Custom Vars */
+:root {
+    --statsScreenHeight: 25;
+    --deviceScreenHeight: 0;
+}
 
 /* https://www.fontsaddict.com/font/pokemon-pixel-font-regular.html */
 @font-face {
@@ -19,6 +23,9 @@
 	{
 		max-width: 100%;
 		margin: 50px auto 0 auto;
+		background: lime;
+		height: var(--deviceScreenHeight);
+		
 	}
 
 	div#left
@@ -110,10 +117,10 @@
  		height: 40vh;
 		background-color: #c00d0d;
 
-		box-shadow: -10px 9px #5e0000;
+/* 		box-shadow: -10px 9px #5e0000;
 		-webkit-box-shadow: -10px 9px #5e0000;
 		-moz-box-shadow: -10px 9px #5e0000;
-		-o-box-shadow: -10px 9px #5e0000;
+		-o-box-shadow: -10px 9px #5e0000; */
 
 /* 		border-bottom-left-radius: 30px;
 		-webkit-border-bottom-left-radius: 30px;
@@ -185,10 +192,10 @@
 	    min-height: 50px;
 	    box-sizing: content-box;
 		
-		background: radial-gradient(#fb7b7b, #fb0505);
-		background: -webkit-radial-gradient(#fb7b7b, #fb0505);
-		background: -moz-radial-gradient(#fb7b7b, #fb0505);
-		background: -o-radial-gradient(#fb7b7b, #fb0505);
+		background: radial-gradient(#fb7b7b, #8e0000);
+		background: -webkit-radial-gradient(#fb7b7b, #8e0000);
+		background: -moz-radial-gradient(#fb7b7b, #8e0000);
+		background: -o-radial-gradient(#fb7b7b, #8e0000);
 	}
 
 	div#miniButtonGlass2
@@ -212,10 +219,10 @@
 	    min-height: 50px;
 	    box-sizing: content-box;
 		
-		background: radial-gradient(#fbfb9b, #fbfb05);
-		background: -webkit-radial-gradient(#fbfb9b, #fbfb05);
-		background: -moz-radial-gradient(#fbfb9b, #fbfb05);
-		background: -o-radial-gradient(#fbfb9b, #fbfb05);
+		background: radial-gradient(#fbfb9b, #717100);
+		background: -webkit-radial-gradient(#fbfb9b, #717100);
+		background: -moz-radial-gradient(#fbfb9b, #717100);
+		background: -o-radial-gradient(#fbfb9b, #717100);
 	}
 
 	div#miniButtonGlass3
@@ -239,10 +246,10 @@
 	    min-height: 50px;
 	    box-sizing: content-box;
 		
-		background: radial-gradient(#b0fb7b, #50fb05);
-		background: -webkit-radial-gradient(#b0fb7b, #50fb05);
-		background: -moz-radial-gradient(#b0fb7b, #50fb05);
-		background: -o-radial-gradient(#b0fb7b, #50fb05);
+		background: radial-gradient(#b0fb7b, #1b5700);
+		background: -webkit-radial-gradient(#b0fb7b, #1b5700);
+		background: -moz-radial-gradient(#b0fb7b, #1b5700);
+		background: -o-radial-gradient(#b0fb7b, #1b5700);
 
 	}
 
@@ -288,26 +295,33 @@
 	
 	div#screen
 	{
-		height: 245px;
+		/* height: 245px; */
  		/* width: 302px; max width - 19px : because 19px is what's on the left side */
  		/* width: calc(100vh - 15%); seems to work for */
  		width: 85%;
- 		height: 25vh;
+ 		/* height: 25vh; */
+ 		min-height:25vh;
+ 		/* max-height:51vh; */
  		/* width: auto; */
-		padding: 0 20px;
+		padding: 20px 20px 0 20px;
 		background-color: #b0b0b0;
 
 		position: relative;
 		/* top: 130px; */
+		
 
 		border-radius: 15px 0 15px;
 		-webkit-border-radius: 15px 0 15px;
 		-moz-border-radius: 15px;
 		-o-border-radius: 15px;
 	}
+
 	div#screen-one
 	{
 	background-color: #c00d0d;
+
+	
+	
 	}
 	
 	div#simpleButtons
@@ -319,13 +333,45 @@
 	/* top: 474px;*/
 	position: relative;
 	align-items: center;
+	margin-bottom: -20px;	
+	}
+	div#simpleButtonLabels
+	{
+	/* width: calc(100vh - 15%); */
+	width: 85%;
+	height:auto; /* needs to resize based on its inner content */
+	/* background-color: green; */
+	/* top: 474px;*/
+	position: relative;
+	align-items: center;
 	
 	}
 	
+	
 	/* force readable fonts */
 	#pokeSearchContainer {
+		padding: 0 0 6% 0;
 		font-size:x-large;
-		margin: 0 10.45% 0 0;
+		margin: 0;
+	}
+	
+	#header-spacer {
+	width:85%;
+/* 	background-color:blue;
+	background: blue; */
+	position: relative;
+	}
+	
+	#screen-tab {
+		/* border: darkgreen 3px solid; */
+		/* background-color: #0abd0a; */
+		background-color: #b0b0b0;
+		border-radius: 100px 15px 0 0;
+		padding: 0 1% 0 1%;
+/* 		border: 10px solid #b0b0b0;
+ */		width: 45%;
+  		text-align: center;		
+		
 	}
 	
 	#search-bar{
@@ -333,7 +379,7 @@
 		/* background-color: #0abd0a; */
 		background-color: whitesmoke;
 		border-radius: 15px 15px 0 0;
-		padding: 1%;
+		/* padding: 1%; */
 		border: 10px solid #b0b0b0;
 	}
 
@@ -355,10 +401,11 @@
 
 	div#picture
 	{
-		height: 80%;
+		/* height: 80%; */
+		min-height: 20vh;
 		/* width: 254px; becomes more responsive without width*/ 
 		margin-top: 20px;
-		margin-bottom: 9px;
+		/* margin-bottom: 9px; */
 		background-color: whitesmoke;
 		border: 10px solid #494949;
 		clear: both;
@@ -373,6 +420,7 @@
 	{
 		/* display: block; */
 		margin: 0 auto;
+		width: 44%;
 	}
 	img#sprite-pic {
 		display: block;
@@ -411,8 +459,7 @@
 		height: 26px;
 		width: 26px;
 		background-color: #c00d0d;
-		margin-left: 35px;
-		float: left;
+
 
 		border-radius: 30px;
 		-webkit-border-radius: 30px;
@@ -476,7 +523,8 @@
         -moz-animation: start-search-glowing 1300ms infinite;
         -o-animation: start-search-glowing 1300ms infinite;
         animation: startSearchGlowingPolygon 1300ms infinite;
-
+        
+        max-width: fit-content;
 	}
 
 	@-webkit-keyframes start-search-glowing {
@@ -916,8 +964,8 @@
   		color: rgba(255, 240, 184, 0.5);
 /* 		border: ridge 5px grey;*/
   		font-size:xx-large;
-  		position:absolute;
-  		left:0;
+  		position:relative;
+  		/* margin-top: 6%; */
  
 	}
 	
@@ -938,12 +986,12 @@
 	
 	div#stats
 	{
-		height: 25vh;
+		height: var(--statsScreenHeight);
 		width: 85%;
 		padding: 10px 20px;
 		background-color: #30da0c;
 		z-index: 1;
-		font-size: xxx-large;
+		font-size: 40px;
 		font-family: arial, sans-serif;
 		
 		margin: 2vw 6vw 0 6vw;
@@ -971,6 +1019,26 @@
 		border: 3px solid green;
 		padding: 10px; */
 	}
+	
+	img#search-card-icon, img#search-pokemon-icon, img#logout-icon
+	{
+		transform: rotate(-0.02turn);
+		position: absolute;
+		
+
+	}
+	
+	a#logout
+	{
+	background-color: blue;
+	}
+	img#logout-icon
+	{
+		position:absolute;
+		filter: hue-rotate(90);
+		
+	}
+	
 	div#blueButtons1
 	{
 		z-index: 1;
@@ -981,7 +1049,7 @@
 
 	div#blueButtons2
 	{
-		z-index: 1;
+		/* z-index: 1; */
 		position: relative;
 		width: 85%;
 		padding: 2% 0 0 0;
@@ -1275,7 +1343,7 @@
  	html, body, #pokedex 
 	{
 	  max-width: 98%;
-	  overflow-x: hidden;
+	  /* overflow-x: hidden; */
 	} 
 	body {
   	position: relative;
@@ -1383,6 +1451,8 @@
 		height: 4vh;
 		background-color: #c00d0d;
 		/* background-color: lime; */
+		position: absolute; /* allows it to be overlapped by screen-one */
+		
 		
 
 /* 		box-shadow: -10px 9px #5e0000;
@@ -1462,9 +1532,23 @@
 	 		
 		}
 		#pokeSearchContainer {
-		margin: 0 7.45% 0 0;
+		margin:0;
+
 		}
-	
+		#pokeSearchContainer>Input{
+		border-radius: 0 0 5px 5px;
+		-webkit-border-radius:  0 0 5px 5px;
+		-moz-border-radius:  0 0 5px 5px;
+		-o-border-radius:  0 0 5px 5px;
+		text-align:center;
+		}
+		
+		div#stand-by
+		{
+		    font-size: 44px;
+		    
+		}
+		
 	
 	}
 	
@@ -1488,6 +1572,19 @@
 	 div#bg_curve1_right {
 /* 	 	display: none;
  */	 }
+		#modal {
+	  background-color: rgba(255, 255, 255, 0.95);
+	  color: #333;
+
+	}
+	
+	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+	  #modal {
+	    -webkit-backdrop-filter: blur(10px);
+	    backdrop-filter: blur(10px);
+	    background-color: rgba(255, 255, 255, 0.5);  
+	  }}
+
 	
 
 }

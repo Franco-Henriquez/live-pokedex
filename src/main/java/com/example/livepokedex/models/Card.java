@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -66,7 +67,7 @@ public class Card {
     @Transient // Field that will NOT be saved in the database
     private String cardString;
     
-    @PostLoad // After we grab from DB, call on this method to get the value for the full name, derived from first and last names
+    @PostLoad // cardString = Deck Id + Card Number
     protected void onLoad() {
     	System.out.println("Card.java onLoad Triggered");
     	this.cardString = this.cardDeckId + "/" + this.cardNum;
@@ -86,6 +87,13 @@ public class Card {
         inverseJoinColumns = @JoinColumn(name = "trainer_id")
     )
     private List<Trainer> trainerList; //list of courses that student is in
+    
+    
+    //ONE CARD - (HISTORY) - MULTIPLE SEARCHES BY TRAINER
+    //TRAINER_POKEMON N:M - MANY TO MANY
+    @OneToMany(mappedBy="card", fetch = FetchType.LAZY)
+    private List<SearchHistory> trainer; //list trainers who have searched this card
+    
     //-----------END RELATIONSHIPS-----------//
     
     

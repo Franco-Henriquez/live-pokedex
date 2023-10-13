@@ -5,13 +5,21 @@
 //STEP 5: LOOK THROUGH DATA
 //STEP 6: MANIPULATE WEB-PAGE
 
-var pokeSearch = document.getElementById('search-bar')
-var spritePic = document.getElementById('sprite-pic')
-var spritePicShiny = document.getElementById('sprite-pic-shiny')
+var pokeSearch = document.getElementById('search-bar');
+var spritePic = document.getElementById('sprite-pic');
+var spritePicShiny = document.getElementById('sprite-pic-shiny');
 var pokeStats = document.getElementById('stats-list');
 var searchContainer = document.getElementById('pokeSearchContainer');
 var searchHistoryTable = document.getElementById('search-history');
 var standByMsg = document.getElementById('stand-by');
+var firstScreenControls = document.getElementById('simpleButtons');
+var firstScreenControlsHeight = firstScreenControls.offsetHeight;
+var firstScreenControlsHeight = Math.floor(100 * firstScreenControlsHeight / window.innerHeight);
+let statsScreenHeight = getComputedStyle(document.documentElement).getPropertyValue('--statsScreenHeight');
+var newStatsScreenHeight = (+statsScreenHeight + +firstScreenControlsHeight);
+var dexIdField = document.getElementById('dexId');
+var pokemonNameField = document.getElementById('pokemonName');
+
 var pokedexNumLimit = 1008;
 var log = console.log.bind(log)
 var pokemon
@@ -72,7 +80,36 @@ async function iChooseU(){
         pokeStats.innerHTML = `<li class="error-notice"><b>ERROR</b>&nbsp;<div>Pokédex number cannot</div></li>`
         pokeStats.innerHTML += `<li><div>exceed ${pokedexNumLimit}.</div></li>`;
     }
+    
+    //build the form:
+    
+    
+    //SUBMIT THE AUTOFILLED FORM WHEN DATA RETURNS - use #submit for id
+    dexIdField.value = pokeResults.id;
+    pokemonNameField.value = pokemonName;
+    //document.getElementById('submit').click();
+    submitThisForm();
+    document.getElementById('searchHistoryForm').addEventListener("submit",(e)=>e.preventDefault())
+    //submitThisForm();
+    
     return(pokeResults);
+}
+
+function submitThisForm() {
+	let form = document.getElementById("searchHistoryForm");
+   	
+	form.onsubmit = function (e) {
+	    e.preventDefault();
+		console.log("Event 2: "+e);
+	    //form data class
+	    fetch(form.action, {
+	        method: "post", 
+	        body: new FormData(form)
+	    }).then(response => {
+	        document.getElementById('submit').click();
+	        console.log("Event 2: "+e);  
+	    });
+	}
 }
 
 //don't know how to get json results without quering the api again so we'll make a display:none function instead
@@ -116,8 +153,20 @@ async function sleep(ms) {
 function loadDashboard() {
 	searchContainer.classList.remove("d-flex"); //flex uses !important and it can't be undone, so we'll just remove the class
 	searchContainer.style.display = 'none';
+	
+	firstScreenControls.classList.remove("d-flex");
+	firstScreenControls.style.display = 'none';
+	
+	//log('1st screen: '+firstScreenControlsHeight);
+	//log('stats screen: '+statsScreenHeight);
+	document.documentElement.style
+    .setProperty('--statsScreenHeight', (newStatsScreenHeight)+'vh');
+		
 	standByMsg.style.display = 'none';
 	pokeStats.style.display = 'none';
+	
+	searchHistoryTable.style.display = '';
+	
 }
 
 //POKESEARCH ONLY
@@ -130,21 +179,57 @@ function pokeSearchView() {
 	standByMsg.style.display = 'block';
 	pokeStats.style.display = 'block';
 	searchHistoryTable.style.display = 'none';
+	
+	
+	
+	firstScreenControls.classList.add("d-flex");
+	
+	
+	
+	
+	
+	//log('1st screen: '+firstScreenControlsHeight);
+	//log('stats screen: '+statsScreenHeight);
+	document.documentElement.style
+    .setProperty('--statsScreenHeight', (statsScreenHeight)+'vh');
+	
+	
 }
 
 function receivingData(pings){
-	//getComputedStyle(document.documentElement)
-    //	.getPropertyValue('--api-data-pings'); // #999999
-    //getComputedStyle(document.documentElement)
-    //	.getPropertyValue('--api-millisecs');
-    var pingFrequency = Math.floor(Math.random() * (pings*.10)) + 40;
+	log(getComputedStyle(document.documentElement)
+    	.getPropertyValue('--api-data-pings')); // #999999
+    log(getComputedStyle(document.documentElement)
+    	.getPropertyValue('--api-millisecs'));
+    var pingFrequency = Math.floor(Math.random() * (pings*.10)) + 40; //make up a random ping glow pattern number from pings
     log("pingFrequency: "+pingFrequency);
     document.documentElement.style
     .setProperty('--api-millisecs', pingFrequency+'ms');
     document.documentElement.style
-    .setProperty('--api-data-pings', pings);
-
+    .setProperty('--api-data-pings', pings*.60);
+    resetDataPings();
 }
+
+function resetDataPings(){
+	log("Data Ping Reset Timer Started")
+	  var greenButton = document.getElementById('miniButtonGlass3');
+	  var redButton = document.getElementById('buttonbottomPicture');
+	  greenButton.style.animation = 'none';
+	  greenButton.offsetHeight; /* trigger reflow */
+	  greenButton.style.animation = null; 
+	  redButton.style.animation = 'none';
+	  redButton.offsetHeight; /* trigger reflow */
+	  redButton.style.animation = null; 
+  	//delay function, but no use here
+  	//setTimeout(function(){
+
+	 //   log("Data Ping Reset Completed")
+	//}, 6000);
+}
+
+
+//add height of 196px to screen1 to compensate for removing #simpleButtons
+
 
 
 //TO DO
