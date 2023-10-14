@@ -75,7 +75,7 @@ public class Trainer {
     private Integer favoritePokemon = 1;
     
     @Size(min=3, max=8, message="Favorite pokemon CARD must be 3-8 characters long")
-    private String favoriteCard = "nul"; //this will store deckId+cardNum //find a way to separate or add a divider to 'split' later
+    private String favoriteCard = "0123"; //this will store deckId+cardNum //find a way to separate or add a divider to 'split' later
     //----------END TABLE COLUMNS------------//
 
     
@@ -113,14 +113,14 @@ public class Trainer {
     
     //------------CONSTRUCTOR / GETTERS / SETTERS --------------//
     public Trainer() {}
-	public Trainer(
+    public Trainer(
 			@NotEmpty(message = "Trainer name is required!") @Size(min = 3, max = 15, message = "Trainer name must be between 3 and 15 characters") String trainerName,
 			@NotEmpty(message = "Email is required!") @Email(message = "Please enter a valid email!") String email,
 			@NotEmpty(message = "Password is required!") @Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters") String password,
 			@NotEmpty(message = "Confirm Password is required!") @Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters") String confirmPassword,
 			@Range(min = 1, message = "Favorite pokemon ID must be 1-4 digits long") Integer favoritePokemon,
 			@Size(min = 3, max = 8, message = "Favorite pokemon CARD must be 3-8 characters long") String favoriteCard,
-			List<Card> cardList, List<Pokemon> pokemonList) {
+			List<Card> cardList, List<Pokemon> pokemonList, List<SearchHistory> pokemon) {
 		this.trainerName = trainerName;
 		this.email = email;
 		this.password = password;
@@ -129,6 +129,7 @@ public class Trainer {
 		this.favoriteCard = favoriteCard;
 		this.cardList = cardList;
 		this.pokemonList = pokemonList;
+		this.pokemon = pokemon;
 	}
 	public Long getId() {
 		return id;
@@ -184,9 +185,14 @@ public class Trainer {
 	public void setPokemonList(List<Pokemon> pokemonList) {
 		this.pokemonList = pokemonList;
 	}
+	public List<SearchHistory> getPokemon() {
+		return pokemon;
+	}
+	public void setPokemonHistoryList(List<SearchHistory> pokemon) {
+		this.pokemon = pokemon;
+	}
     
-	
-
+    
        
 
 }

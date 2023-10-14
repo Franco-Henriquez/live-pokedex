@@ -21,9 +21,9 @@ var dexIdField = document.getElementById('dexId');
 var pokemonNameField = document.getElementById('pokemonName');
 
 var pokedexNumLimit = 1008;
-var log = console.log.bind(log)
-var pokemon
-var pokeStats
+var log = console.log.bind(log);
+var pokemon;
+var pokeStats;
 
 function getVal(){
     pokemon = pokeSearch.value.toLowerCase() //to lowercase because the api only accepts lower case pokemon names
@@ -32,9 +32,7 @@ function getVal(){
         pokeStats.innerHTML += `<li><div>exceed ${pokedexNumLimit}.</div></li>`;
         log(pokemon)
         pokemon = "invalid pokemon";
-    } else {
-        //do nothing
-    }
+    } 
 }
 
 async function iChooseU(){
@@ -155,8 +153,7 @@ async function sleep(ms) {
 
 
 //DASHBOARD ONLY (HIDE POKEMON SEARCH STATS)
-function loadDashboard(loadId) {
-	if (loadId == 1 || loadId == 2) {
+function loadDashboard() {
 	searchContainer.classList.remove("d-flex"); //flex uses !important and it can't be undone, so we'll just remove the class
 	searchContainer.style.display = 'none';
 	
@@ -172,11 +169,6 @@ function loadDashboard(loadId) {
 	pokeStats.style.display = 'none';
 	
 	searchHistoryTable.style.display = '';
-	}
-	
-	//if (loadId == 2) {
-	//	pokeSearchView();
-	//	}
 	
 }
 

@@ -86,6 +86,32 @@ public class TrainerService {
     
     
 	//--------------UPDATE--------------//
+    public Trainer updateTrainer(Trainer thisTrainer, BindingResult result) {
+    	
+    	if(!thisTrainer.getPassword().equals(thisTrainer.getConfirmPassword())) {
+    	    result.rejectValue("password", "passwordsDisagree.registeredTrainer.password", "The password must agree!");
+    	}
+    	Optional<Trainer> foundTrainer = trainerRepo.findByEmail(thisTrainer.getEmail());
+    	System.out.println("Email 1 :"+foundTrainer.get().getEmail());
+    	System.out.println("Email 2 :"+thisTrainer.getEmail());
+    	if (foundTrainer.isPresent() && foundTrainer.get().getId() != thisTrainer.getId()) {
+    		result.rejectValue("email", "email.Taken.updateTrainer.email", "Email unavailable");
+    	} 	
+    	if (result.hasErrors()) {
+    		System.out.println("error found in result for trainer edits");
+    		return null;
+    	} else {
+    		//Password hash
+    		String hashedPassword = BCrypt.hashpw(thisTrainer.getPassword(), BCrypt.gensalt());
+    		thisTrainer.setPassword(hashedPassword);
+    		System.out.println("Trainer Origina Name: "+thisTrainer.getTrainerName());
+    		trainerRepo.save(thisTrainer);
+    		foundTrainer = trainerRepo.findByEmail(thisTrainer.getEmail());
+    		return foundTrainer.get();
+    	}
+
+    	//return trainerRepo.save(thisTrainer);
+    }
 	
 	//--------------DELETE--------------//
     

@@ -46,9 +46,9 @@ public class PokemonController {
 			// and if it does, then we fetch the id and this should fix that issue
 			
 			
+			Integer loadId = 2; 
 			
-			
-			return "redirect:/dashboard"; //"redirect:/dashboard";  no redirect otherwise we reset the apge
+			return "redirect:/dashboard/"+loadId; //"redirect:/dashboard";  no redirect otherwise we reset the apge
 		}
 	}
 }

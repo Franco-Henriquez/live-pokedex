@@ -24,6 +24,8 @@ public class SearchHistoryService {
 	@Autowired
 	private CardService cardServ;
 	
+	
+	
 	//----------------------------------//
     //---------------CRUD---------------//
 	//----------------------------------//
@@ -73,6 +75,9 @@ public class SearchHistoryService {
 	//--------------UPDATE--------------//
 	
 	//--------------DELETE--------------//
+	public void deleteOneSearchEntry(Long searchHistoryId) {
+		historyRepo.deleteById(searchHistoryId);
+	}
     
 	//--------------------------------------//
     //---------------END CRUD---------------//
