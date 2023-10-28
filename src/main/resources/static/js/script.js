@@ -91,10 +91,10 @@ async function iChooseU(){
     
     //build the form:
     
-            document.getElementById('submit').click();
+    document.getElementById('submit').click();
 
 
-    document.getElementById('searchHistoryForm').addEventListener("submit",(e)=>e.preventDefault())
+    //document.getElementById('searchHistoryForm').addEventListener("submit",(e)=>e.preventDefault())
     //submitThisForm();
     
     return(pokeResults);

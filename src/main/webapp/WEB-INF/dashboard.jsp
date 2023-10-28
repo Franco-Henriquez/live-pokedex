@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -19,9 +19,10 @@
  	<script src="/js/script.js" defer></script>
 	<script src="/js/loading.js" defer></script>
 	<script src="/js/screen_debug.js" defer></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		
 	
-	<title>Live Pokédex</title>
+	<title>Live PokÃ©dex</title>
 </head>
 <body onload="loadDashboard(<c:out value="${loadId}"/>),getWidthHeight(),getVal()" class="flex-container"> <!-- loadDashboard(), -->
 <!-- 	<div class="d-flex p-1 justify-content-around"> -->	
@@ -54,7 +55,7 @@
 			<div id="screen-one" class="d-flex flex-column align-items-center ">
 				 <div id="header-spacer" class="d-flex">
 				 	<div id="screen-tab" class="ms-auto m-0 p-2">
-		                    <h1 class="">Search Pokémon</h1>
+		                    <h1 class="">Search PokÃ©mon</h1>
 				 	</div> <!-- Half the space or 42.5% -->
 				 </div>
 				 <div id="screen" class=""> <!-- SCREEN 1 -->
@@ -70,7 +71,7 @@
 				     </div>
 				     <div id="pokeSearchContainer" class="d-flex justify-content-around">
 					     <div id="buttonbottomPicture" class="align-self-center"></div>
-					     <input id="search-bar" class="align-self-start" type="text" placeholder="Pokémon Name or ID" onchange="getVal()">			
+					     <input id="search-bar" class="align-self-start" type="text" placeholder="PokÃ©mon Name or ID" onchange="getVal()">			
 					     <div id="speakers" class="align-self-center">
 					         <div class="sp"></div>
 					         <div class="sp"></div>
@@ -86,19 +87,19 @@
 					  </div>
 					  <div class="bg-transparent d-flex flex-column justify-content-between">
 						  	<div class="align-self-center" id="barbutton1">
-						  	<!-- FORM - ADD TO POKEMON HISTORY -->
+<%-- 						  	<!-- FORM - ADD TO POKEMON HISTORY -->
 		 						<form:form id="searchHistoryForm" modelAttribute="newPokemon" method="post" action="/pokemon/new" onsubmit="(e)=>e.preventDefault(); console.log('Event 2: '+e);">
 								<div>
-	<%-- 						<form:errors class="row btn-warning p-1 mt-2" path="pokemonName"/>
-								<form:errors class="row btn-warning p-1 mt-2" path="dexId"/> --%>
+							<form:errors class="row btn-warning p-1 mt-2" path="pokemonName"/>
+								<form:errors class="row btn-warning p-1 mt-2" path="dexId"/>
 								</div>
 								<form:hidden id="pokemonName" path="pokemonName" value="MissingNo" />
 								<form:hidden id="dexId" path="dexId" value="000" />
-							<%-- <form:hidden id="searchString" path="searchString" value="MissingNo" /> --%>
+							<form:hidden id="searchString" path="searchString" value="MissingNo" />
 						
 								<input id="submit" type="submit" value=" " />
 								</form:form>
-							</div>
+ --%>							</div>
 						  	<p class="emboss align-self-center">SAVE</p>
 					  </div>
 					  <div class="bg-transparent d-flex flex-column justify-content-between">
@@ -145,7 +146,7 @@
 							<thead>
 								<tr>
 									<th scope="col">ID</th> <!-- pull from SearchHistory -->
-									<th scope="col">Pokémon</th> <!-- pull from SearchHistory Card relationship -->
+									<th scope="col">PokÃ©mon</th> <!-- pull from SearchHistory Card relationship -->
 									<th scope="col">Trainer</th> <!-- pull from SearchHistory Trainer relationship -->
 									<th scope="col">Type</th> <!-- pull from SearchHistory -->
 									<th scope="col">Action</th>
@@ -185,13 +186,21 @@
 		            </div>
 		            <div id="blueButtons1" class="d-flex align-items-center justify-content-around">
 		                <div class="blueButton d-flex flex-column align-items-center">
-		               		<img onclick="cardSearchView()" id="search-card-icon" src="/images/pokemon_card_small.png" alt="CARD SEARCH" height="100%" />
+		                	<a id="logout" class="align-self-center"  href="/card/">
+		               			<img onclick="cardSearchView()" id="search-card-icon" src="/images/pokemon_card_small.png" alt="CARD SEARCH" height="100%" />
+		               		</a>
 				        </div>
    		                <div class="blueButton d-flex flex-column align-items-center">
 		               		<img onclick="pokeSearchView()" id="search-pokemon-icon" src="/images/pokemon_search_pixel_ditto.png" alt="POKEMON SEARCH" height="100%" />
 				        </div>
    		                <div class="blueButton d-flex flex-column align-items-center">
-		               		<img onclick="loadDashboard(1)" id="dashboard-icon" class="align-self-center" src="/images/pokedex_dash.png" alt="DASHBOARD" height="100%" />
+   		                	<a id="dashboard-icon" class="align-self-center"  href="/dashboard">
+		               			
+		               			<img class="align-self-center" src="/images/pokedex_dash.png" alt="DASHBOARD" height="50%" />
+		               			
+		               		</a>
+		               		
+		               		<!-- onclick="loadDashboard(1)" -->
 				        </div>
 		                <div class="blueButton"></div>
    		                <div class="blueButton d-flex flex-column">
@@ -223,22 +232,48 @@
 		            </div>
 		        </div><!-- END DETAIL SCREEN -->
 		        <!-- FORM - ADD TO POKEMON HISTORY -->
-	 			<form:form id="searchHistoryForm" modelAttribute="newPokemon" method="post" action="/pokemon/new" onsubmit="(e)=>e.preventDefault(); console.log('Event 2: '+e);">
-					<div>
-<%-- 						<form:errors class="row btn-warning p-1 mt-2" path="pokemonName"/>
-						<form:errors class="row btn-warning p-1 mt-2" path="dexId"/> --%>
-					</div>
-					<form:hidden id="pokemonName" path="pokemonName" value="MissingNo" />
-					<form:hidden id="dexId" path="dexId" value="000" />
-					<%-- <form:hidden id="searchString" path="searchString" value="MissingNo" /> --%>
-					
+	 			<form id="searchHistoryForm"> <!-- onsubmit="(e)=>e.preventDefault(); console.log('Event 2: '+e);" -->
+					<input hidden="true" id="pokemonName" path="pokemonName" value="MissingNo" />
+					<input hidden="true" id="dexId" path="dexId" value="000" />
 					<input id="submit" type="submit" value="submit" />
-				</form:form>
+				</form>
 				<!-- END POKEMON HISTORY FORM -->
 		        
 		        
 	        </div> <!-- end container for screens (id=left)-->
         </div> <!-- END LEFT SCREEN PANEL  --> <!-- #pokedex -->
+<script>
+//Using jQuery
+$(document).ready(function() {
+    $('#searchHistoryForm').submit(function(event) {
+        // Prevent the form from submitting the traditional way
+        event.preventDefault();
 
+        // Get form data
+        //var formData = $(this).serialize();
+        var formData = {
+        	pokemonName: $('#pokemonName').val(),
+        	dexId: $('#dexId').val()
+        };
+
+        // Send AJAX request
+        $.ajax({
+            type: 'POST',
+            url: '/pokemon/new', // Specify your backend endpoint URL here
+            contentType: 'application/json', // Set content type to JSON
+            data: JSON.stringify(formData), // Convert data to JSON string
+            success: function(response) {
+                // Handle the response from the server
+                console.log('Data sent successfully:', response);
+                // You can update your UI here if needed
+            },
+            error: function(error) {
+                console.error('AJAX REPONSE ERROR:', error);
+            }
+        });
+    });
+});
+
+</script>
 </body>
 </html>
